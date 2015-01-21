@@ -8,6 +8,7 @@ print ('\n')
 
 n = input('Size of the table? ')
 
+
 def makeTable(n):
     table = [0] * n
     for i in range(n):
@@ -29,18 +30,35 @@ def pickGrid(table, freeList):
 
 def makeMove(usrInput):
     if usrInput == 'up':
-        moveUp
+        moveUp()
     elif usrInput == 'down':
-        moveDown
+        moveDown()
     elif usrInput == 'left':
-        moveLeft
+        moveLeft()
     elif usrInput == 'right':
-        moveRight
+        moveRight()
     else:
         print ('Please select a valid move')
         return 1
     return 0
 
+def moveUp():
+    global table
+
+    for col in range(0, 4):
+        for i in range(0, 3):
+            for j in range(i+1, 4):
+                if table[i][col]!= '-' and table[i][col] == table[j][col]:
+                    table[j][col] = '-'
+                    table[i][col] = table[i][col] * 2
+                    break
+
+        for i in range(0, 3):
+            for j in range(i+1, 4):
+                if table[i][col]== '-' and table[j][col]!= '-':
+                    table[i][col] = table[j][col]
+                    table[j][col] = '-'
+                    break
 
 table = makeTable(n)
 printTable(table)
