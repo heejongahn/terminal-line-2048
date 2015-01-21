@@ -1,10 +1,10 @@
 import random
 
-print '=============================================='
-print 'Simple mockup of 2048 game, made by Heejong Ahn'
-print 'You can see the code in github.com/heejongahn'
-print '=============================================='
-print '\n'
+print ('==============================================')
+print ('Simple mockup of 2048 game, made by Heejong Ahn')
+print ('You can see the code in github.com/heejongahn')
+print ('==============================================')
+print ('\n')
 
 n = input('Size of the table? ')
 
@@ -18,8 +18,8 @@ def makeTable(n):
 def printTable(table):
     for line in table:
         for e in line:
-            print e,
-        print '\n'
+            print (e),
+        print ('\n')
     return
 
 def pickGrid(table, freeList):
@@ -37,7 +37,7 @@ def makeMove(usrInput):
     elif usrInput == 'right':
         moveRight
     else:
-        print 'Please select a valid move'
+        print ('Please select a valid move')
         return 1
     return 0
 
