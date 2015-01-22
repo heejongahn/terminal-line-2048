@@ -93,7 +93,6 @@ def moveUp():
                     break
 
 
-
 # Main routine
 
 while (freeList!= []):
