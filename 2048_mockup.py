@@ -8,6 +8,7 @@ import random
 
 def initializeGame():
     global table
+    global n
 
     print ('==============================================')
     print ('Simple mockup of 2048 game, made by Heejong Ahn')
@@ -15,7 +16,7 @@ def initializeGame():
     print ('==============================================')
     print ('\n')
 
-    n = input('Size of the table? ')
+    n = int(input('Size of the table? '))
     table = makeTable(n)
 
     printTable(table)
@@ -44,8 +45,10 @@ def printTable(table):
 # Pick a free grid from a table and place [2] tile
 
 def pickGrid(table, freeList):
+    global n
+
     grid = random.choice(freeList)
-    table[grid//4][grid%4] = 2
+    table[grid//n][grid%n] = 2
     return
 
 # function makeMove
@@ -72,17 +75,18 @@ def makeMove(usrInput):
 
 def moveUp():
     global table
+    global n
 
-    for col in range(0, 4):
-        for i in range(0, 3):
-            for j in range(i+1, 4):
+    for col in range(0, n):
+        for i in range(0, n-1):
+            for j in range(i+1, n):
                 if table[i][col]!= '-' and table[i][col] == table[j][col]:
                     table[j][col] = '-'
                     table[i][col] = table[i][col] * 2
                     break
 
-        for i in range(0, 3):
-            for j in range(i+1, 4):
+        for i in range(0, n-1):
+            for j in range(i+1, n):
                 if table[i][col]== '-' and table[j][col]!= '-':
                     table[i][col] = table[j][col]
                     table[j][col] = '-'
