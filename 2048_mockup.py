@@ -96,9 +96,8 @@ def moveUp():
 # Main routine
 
 while (freeList!= []):
-    while True:
-        usrInput = input("Pick a move : up/down/left/right ")
-        if not makeMove(usrInput):
-            break
-
-    pickGrid
+    usrInput = input("Pick a move : up/down/left/right ")
+    if makeMove(usrInput):
+        continue
+    pickGrid()
+    printTable()
