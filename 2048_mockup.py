@@ -1,12 +1,17 @@
 import random
 
+# 2048 Mockup in Python3 : Made by Heejong Ahn
+
+
+# function initializeGame
+# Literally initializes the game: Make a game table and print it
 
 def initializeGame():
     global table
 
     print ('==============================================')
     print ('Simple mockup of 2048 game, made by Heejong Ahn')
-    print ('You can see the code in github.com/heejongahn')
+    print ('You can see the full code in github.com/heejongahn')
     print ('==============================================')
     print ('\n')
 
@@ -15,12 +20,18 @@ def initializeGame():
 
     printTable(table)
 
+# function makeTable
+# Makes a n*n size game table
+
 def makeTable(n):
     table = [0] * n
     for i in range(n):
         table[i] = ['-'] * n
     table[0][0] = 2
     return table
+
+# function printTable
+# Prints current game table state
 
 def printTable(table):
     for line in table:
@@ -29,10 +40,16 @@ def printTable(table):
         print ('\n')
     return
 
+# function pickGrid
+# Pick a free grid from a table and place [2] tile
+
 def pickGrid(table, freeList):
     grid = random.choice(freeList)
     table[grid//4][grid%4] = 2
     return
+
+# function makeMove
+# This is what 2048 is about!
 
 def makeMove(usrInput):
     if usrInput == 'up':
@@ -47,6 +64,11 @@ def makeMove(usrInput):
         print ('Please select a valid move')
         return 1
     return 0
+
+# funciton moveUp
+# Like other three move functions below,
+# 1) Handles the merge first and then
+# 2) Handles the blanks
 
 def moveUp():
     global table
@@ -67,6 +89,8 @@ def moveUp():
                     break
 
 
+
+# Main routine
 
 while (freeList!= []):
     while True:
