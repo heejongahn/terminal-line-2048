@@ -19,7 +19,7 @@ class Table():
 
         self.size = int(input('Size of the table? '))
         self.table = self.makeTable()
-        self.freeList = list(range(1,16))
+        self.freeList = list(range(1,self.size*self.size))
 
         self.printTable()
 
@@ -77,7 +77,7 @@ class Table():
             return 1
         return 0
 
-    # funciton moveUp
+    # function moveUp
     # Like other three move functions below,
     # 1) Handles the merge first and then
     # 2) Handles the blanks
@@ -105,6 +105,37 @@ class Table():
                         freeList.remove(i*n + col)
                         break
 
+    # function moveDown
+
+    def moveDown(self):
+        n = self.size
+        table = self.table
+        freeList = self.freeList
+
+        for col in range(0, n):
+            iRange = list(range(1, n))
+            iRange.reverse()
+
+            for i in iRange:
+                jRange = list(range(0, i))
+                jRange.reverse()
+                for j in jRange:
+                    if table[i][col]!= '-' and table[i][col] == table[j][col]:
+                        table[j][col] = '-'
+                        freeList.append(j*n + col)
+                        table[i][col] = table[i][col] * 2
+                        break
+
+            for i in iRange:
+                jRange = list(range(0, i))
+                jRange.reverse()
+                for j in jRange:
+                    if table[i][col]== '-' and table[j][col]!= '-':
+                        table[i][col] = table[j][col]
+                        table[j][col] = '-'
+                        freeList.append(j*n + col)
+                        freeList.remove(i*n + col)
+                        break
 
 # Main routine
 
