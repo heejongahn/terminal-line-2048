@@ -43,7 +43,10 @@ class Table():
 
         for line in table:
             for e in line:
-                print (e, end=" ")
+                val = str(e)
+                blank = " " * (4-len(val))
+                tile = val + blank
+                print (tile, end=" ")
             print ('\n')
         return
 
