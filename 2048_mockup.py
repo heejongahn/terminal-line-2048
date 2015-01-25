@@ -137,6 +137,61 @@ class Table():
                         freeList.remove(i*n + col)
                         break
 
+    def moveLeft(self):
+        n = self.size
+        table = self.table
+        freeList = self.freeList
+
+        for row in range(0, n):
+            iRange = list(range(1, n))
+            iRange.reverse()
+
+            for i in range(0, n-1):
+                jRange = list(range(0, i))
+                jRange.reverse()
+
+                for j in range(i+1, n):
+                    if table[row][i]!= '-' and table[row][i] == table[row][j]:
+                        table[row][j] = '-'
+                        freeList.append(row*n + j)
+                        table[row][i] = table[row][i] * 2
+                        break
+
+            for i in range(0, n-1):
+                jRange = list(range(0, i))
+                jRange.reverse()
+
+                for j in range(i+1, n):
+                    if table[row][i]== '-' and table[row][j]!= '-':
+                        table[row][i] = table[row][j]
+                        table[row][j] = '-'
+                        freeList.append(row*n + j)
+                        freeList.remove(row*n + i)
+                        break
+
+    def moveRight(self):
+        n = self.size
+        table = self.table
+        freeList = self.freeList
+
+        for row in range(0, n):
+            for i in range(1, n):
+                for j in range(0, i):
+                    if table[row][i]!= '-' and table[row][i] == table[row][j]:
+                        table[row][j] = '-'
+                        freeList.append(row*n + j)
+                        table[row][i] = table[row][i] * 2
+                        break
+
+            for i in range(1, n):
+                for j in range(0, i):
+                    if table[row][i]== '-' and table[row][j]!= '-':
+                        table[row][i] = table[row][j]
+                        table[row][j] = '-'
+                        freeList.append(row*n + j)
+                        freeList.remove(row*n + i)
+                        break
+
 # Main routine
 
 table = Table()
