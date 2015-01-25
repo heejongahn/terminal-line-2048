@@ -85,12 +85,14 @@ class Table():
     def moveUp(self):
         n = self.size
         table = self.table
+        freeList = self.freeList
 
         for col in range(0, n):
             for i in range(0, n-1):
                 for j in range(i+1, n):
                     if table[i][col]!= '-' and table[i][col] == table[j][col]:
                         table[j][col] = '-'
+                        freeList.append(j*n + col)
                         table[i][col] = table[i][col] * 2
                         break
 
@@ -99,6 +101,8 @@ class Table():
                     if table[i][col]== '-' and table[j][col]!= '-':
                         table[i][col] = table[j][col]
                         table[j][col] = '-'
+                        freeList.append(j*n + col)
+                        freeList.remove(i*n + col)
                         break
 
 
