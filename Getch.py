@@ -1,4 +1,4 @@
-class _Getch:
+class Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
     def __init__(self):
@@ -34,4 +34,4 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
-getch = _Getch()
+getch = Getch()

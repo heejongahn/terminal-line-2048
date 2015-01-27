@@ -9,7 +9,7 @@ CUI-based mockup of the game 2048(http://gabrielecirulli.github.io/2048/), imple
 
 ## How To Play
 
-1. 'python3 2048_mockup.py'
+1. 'python3 Main.py'
 2. Select a size of the game table
 3. You can move with keyboard w,a,s,d
 4. When you achieve [2048] Tile, you win!
