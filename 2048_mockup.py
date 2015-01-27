@@ -151,13 +151,8 @@ class Table():
         freeList = self.freeList
 
         for row in range(0, n):
-            iRange = list(range(1, n))
-            iRange.reverse()
-
             for i in range(0, n-1):
                 if table[row][i] != '-':
-                    jRange = list(range(0, i))
-                    jRange.reverse()
 
                     for j in range(i+1, n):
                         if table[row][i] == table[row][j]:
@@ -187,9 +182,14 @@ class Table():
         freeList = self.freeList
 
         for row in range(0, n):
-            for i in range(1, n):
+            iRange = list(range(1,n))
+            iRange.reverse()
+            for i in iRange:
                 if table[row][i] != '-':
-                    for j in range(0, i):
+                    jRange = list(range(0, i))
+                    jRange.reverse()
+
+                    for j in jRange:
                         if table[row][i] == table[row][j]:
                             table[row][j] = '-'
                             freeList.append(row*n + j)
@@ -198,9 +198,12 @@ class Table():
                         elif table[row][j] != '-':
                             break
 
-            for i in range(1, n):
+            for i in iRange:
                 if table[row][i] == '-':
-                    for j in range(0, i):
+                    jRange = list(range(0, i))
+                    jRange.reverse()
+
+                    for j in jRange:
                         if table[row][j]!= '-':
                             table[row][i] = table[row][j]
                             table[row][j] = '-'
