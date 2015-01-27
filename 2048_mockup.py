@@ -1,4 +1,5 @@
 import random
+import _Getch
 from termcolor import colored
 
 # 2048 Mockup in Python3 : Made by Heejong Ahn
@@ -280,8 +281,10 @@ class Table():
 table = Table()
 
 while (table.canMove()):
-    usrInput= input("Pick a move : w(up) / s(down) / a(left) / d(right) ")
-
+    print("Pick a move : w(up) / s(down) / a(left) / d(right) or q(quit)")
+    usrInput = _Getch.getch()
+    if usrInput == 'q':
+        break
     # Handles invalid inputs
     if table.makeMove(usrInput):
         continue
