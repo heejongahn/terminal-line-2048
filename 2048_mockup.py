@@ -58,10 +58,13 @@ class Table():
 
     def pickGrid(self):
         size = self.size
+        candidates = [2,2,2,2,2,2,2,2,2,4]
 
         grid = random.choice(self.freeList)
+        value = random.choice(candidates)
+
         self.freeList.remove(grid)
-        self.table[grid//size][grid%size] = 2
+        self.table[grid//size][grid%size] = value
 
     # function makeMove
     # This is what 2048 is about!
