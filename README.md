@@ -1,8 +1,13 @@
-# 2048_mockup
-CUI-based mockup of the game 2048(http://gabrielecirulli.github.io/2048/), implemented by Python3.
+# Terminal Line 2048
+CUI-based 2048 inspired by [this](http://gabrielecirulli.github.io/2048/),
+powered by Python3.
+
+## Environment
+Ubuntu 12.04 or upper / Windows
+Python 3
+
 
 ## Prerequisite
-
 
 `pip3 install termcolor`
 
