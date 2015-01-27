@@ -1,4 +1,5 @@
 import random
+from termcolor import colored
 
 # 2048 Mockup in Python3 : Made by Heejong Ahn
 
@@ -21,6 +22,10 @@ class Table():
         self.table = self.makeTable()
         self.freeList = list(range(1,self.size*self.size))
         self.point = 0
+        self.colorMap = {'-': 'white', 2:'white', 4: 'white', 8: 'yellow',
+                16: 'yellow', 32: 'green', 64: 'green', 128: 'cyan',
+                256: 'blue', 512: 'magenta', 1024: 'red', 2048: 'grey'}
+
 
         self.printTable()
 
@@ -41,16 +46,17 @@ class Table():
 
     def printTable(self):
         table = self.table
+        colorMap = self.colorMap
 
         for line in table:
             for e in line:
                 val = str(e)
                 blank = " " * (4-len(val))
                 tile = val + blank
-                print (tile, end=" ")
+                print (colored(tile, colorMap[e]), end=" ")
             print ('\n')
         print ("Current point is: ", end=" ")
-        print (self.point)
+        print (colored(self.point, attrs=['bold']))
         return
 
     # function pickGrid
