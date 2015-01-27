@@ -56,8 +56,10 @@ class Table():
                 tile = val + blank
                 print (colored(tile, colorMap[e]), end=" ")
             print ('\n')
+
         print ("Current point is: ", end=" ")
         print (colored(self.point, attrs=['bold']))
+        print ('- - - - - - - - - - - - - - - - - - - - - - - - -')
         return
 
     # function isGoal
@@ -278,21 +280,27 @@ class Table():
 table = Table()
 
 while (table.canMove()):
-    usrInput = input("Pick a move : w(up) / s(down) / a(left) / d(right) ")
+    usrInput= input("Pick a move : w(up) / s(down) / a(left) / d(right) ")
+
+    # Handles invalid inputs
     if table.makeMove(usrInput):
         continue
+
+    # When table is full and make a move toward invalid direction, ignore it.
     try:
         table.pickGrid()
     except:
         pass
-    table.printTable()
-    if table.isGoal():
-        print ("You win!! your final score is: ", end =" ")
-        print (table.point)
-        while (True):
-            pass
 
-print ("You lost.... your final score is: ", end =" ")
+    table.printTable()
+
+    # When the goal is achieved
+    if table.isGoal():
+        print ("You won !!! Your final score is: ", end =" ")
+        print (table.point)
+        input ("Insert any key to quit... ")
+
+# When There's no possibly way to win
+print ("You lost... Your final score is: ", end =" ")
 print (table.point)
-while (True):
-    pass
+input ("Insert any key to quit... ")
