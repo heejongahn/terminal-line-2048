@@ -20,6 +20,7 @@ class Table():
         self.size = int(input('Size of the table? '))
         self.table = self.makeTable()
         self.freeList = list(range(1,self.size*self.size))
+        self.point = 0
 
         self.printTable()
 
@@ -48,6 +49,8 @@ class Table():
                 tile = val + blank
                 print (tile, end=" ")
             print ('\n')
+        print ("Current point is: ", end=" ")
+        print (self.point)
         return
 
     # function pickGrid
@@ -95,6 +98,7 @@ class Table():
                             table[j][col] = '-'
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
+                            self.point += table[i][col]
                             break
                         elif table[j][col] != '-':
                             break
@@ -129,6 +133,7 @@ class Table():
                             table[j][col] = '-'
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
+                            self.point += table[i][col]
                             break
                         elif table[j][col] != '-':
                             break
@@ -159,6 +164,7 @@ class Table():
                             table[row][j] = '-'
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
+                            self.point += table[row][i]
                             break
                         elif table[row][j] != '-':
                             break
@@ -194,6 +200,7 @@ class Table():
                             table[row][j] = '-'
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
+                            self.point += table[row][i]
                             break
                         elif table[row][j] != '-':
                             break
