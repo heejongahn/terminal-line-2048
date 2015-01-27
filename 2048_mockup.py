@@ -8,24 +8,25 @@ class Table():
 
 
     # function __init__
-    # Initializes the game: Make a game table and print it
+    # Initializes the game: Print instructions. Make a game table and print it
 
     def __init__(self):
 
-        print ('==============================================')
-        print ('Simple mockup of 2048 game, made by Heejong Ahn')
-        print ('You can see the full code in github.com/heejongahn')
-        print ('==============================================')
+        print (' = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =')
+        print ('|| Python3 version of 2048, made by << Heejong Ahn >>      ||')
+        print ('|| Please enjoy, and let me know if you find errors.       ||')
+        print ('|| You can check the full code at github.com/heejongahn    ||')
+        print (' = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =')
         print ('\n')
 
         self.size = int(input('Size of the table? '))
         self.table = self.makeTable()
         self.freeList = list(range(1,self.size*self.size))
         self.point = 0
+        self.maxValue = 2
         self.colorMap = {'-': 'white', 2:'white', 4: 'white', 8: 'yellow',
                 16: 'yellow', 32: 'green', 64: 'green', 128: 'cyan',
                 256: 'blue', 512: 'magenta', 1024: 'red', 2048: 'grey'}
-
 
         self.printTable()
 
@@ -59,8 +60,36 @@ class Table():
         print (colored(self.point, attrs=['bold']))
         return
 
+    # function isGoal
+    # Check whether user achieved the goal or not
+
+    def isGoal(self):
+        if self.maxValue == 2048:
+            return True
+        return False
+
+    def canMove(self):
+        table = self.table
+        size = self.size
+
+        if self.freeList!= []:
+            return True
+
+        for i in range(size-1):
+            for j in range(size-1):
+                if table[i][j] == table[i+1][j] or table[i][j] == table[i][j+1]:
+                    return True
+
+            if table[size-1][i] == table[size-1][i+1]:
+                return True
+            if table[i][size-1] == table[i+1][size-1]:
+                return True
+
+        return False
+
     # function pickGrid
-    # Pick a free grid from a table and place [2] tile
+    # Pick a free grid from a table.
+    # Then place [2] tile for 90% chance, [4] tile for 10% chance
 
     def pickGrid(self):
         size = self.size
@@ -74,6 +103,7 @@ class Table():
 
     # function makeMove
     # This is what 2048 is about!
+    # Called each and every time when the user gives an input
 
     def makeMove(self, usrInput):
         if usrInput == 'w':
@@ -93,13 +123,17 @@ class Table():
     # Like other three move functions below,
     # 1) Handles the merge first and then
     # 2) Handles the blanks
+    # Other move functions has similar structures, thus emit comments for them.
 
     def moveUp(self):
         n = self.size
         table = self.table
         freeList = self.freeList
+        maxValue = self.maxValue
 
         for col in range(0, n):
+
+            # Merge Handling
             for i in range(0, n-1):
                 if table[i][col]!= '-':
                     for j in range(i+1, n):
@@ -108,10 +142,12 @@ class Table():
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
                             self.point += table[i][col]
+                            maxValue = max(maxValue, table[i][col])
                             break
                         elif table[j][col] != '-':
                             break
 
+            # Blank Handling
             for i in range(0, n-1):
                 if table[i][col] == '-':
                     for j in range(i+1, n):
@@ -128,6 +164,7 @@ class Table():
         n = self.size
         table = self.table
         freeList = self.freeList
+        maxValue = self.maxValue
 
         for col in range(0, n):
             iRange = list(range(1, n))
@@ -143,6 +180,7 @@ class Table():
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
                             self.point += table[i][col]
+                            maxValue = max(maxValue, table[i][col])
                             break
                         elif table[j][col] != '-':
                             break
@@ -159,10 +197,13 @@ class Table():
                             freeList.remove(i*n + col)
                             break
 
+    # function moveLeft
+
     def moveLeft(self):
         n = self.size
         table = self.table
         freeList = self.freeList
+        maxValue = self.maxValue
 
         for row in range(0, n):
             for i in range(0, n-1):
@@ -174,6 +215,7 @@ class Table():
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
                             self.point += table[row][i]
+                            maxValue = max(maxValue, table[row][i])
                             break
                         elif table[row][j] != '-':
                             break
@@ -191,10 +233,13 @@ class Table():
                             freeList.remove(row*n + i)
                             break
 
+    # function moveRight
+
     def moveRight(self):
         n = self.size
         table = self.table
         freeList = self.freeList
+        maxValue = self.maxValue
 
         for row in range(0, n):
             iRange = list(range(1,n))
@@ -210,6 +255,7 @@ class Table():
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
                             self.point += table[row][i]
+                            maxValue = max(maxValue, table[row][i])
                             break
                         elif table[row][j] != '-':
                             break
@@ -231,9 +277,22 @@ class Table():
 
 table = Table()
 
-while (table.freeList!= []):
+while (table.canMove()):
     usrInput = input("Pick a move : w(up) / s(down) / a(left) / d(right) ")
     if table.makeMove(usrInput):
         continue
-    table.pickGrid()
+    try:
+        table.pickGrid()
+    except:
+        pass
     table.printTable()
+    if table.isGoal():
+        print ("You win!! your final score is: ", end =" ")
+        print (table.point)
+        while (True):
+            pass
+
+print ("You lost.... your final score is: ", end =" ")
+print (table.point)
+while (True):
+    pass
