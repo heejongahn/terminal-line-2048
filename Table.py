@@ -1,5 +1,16 @@
 import random
 from termcolor import colored
+import os
+import platform
+
+isWindows = True if platform.system() == 'Windows' else False
+
+wall = '''
+ ____  ____  ____  __  __  ____  _  _    __    __    ___   ___    __   ___
+(_  _)( ___)(  _ \(  \/  )(_  _)( \( )  /__\  (  )  (__ \ / _ \  /. | ( _ )
+  )(   )__)  )   / )    (  _)(_  )  (  /(__)\  )(__  / _/( (_) )(_  _)/ _ \\
+ (__) (____)(_)\_)(_/\/\_)(____)(_)\_)(__)(__)(____)(____)\___/   (_) \___/ made by Heejong Ahn
+'''
 
 class Table():
 
@@ -9,14 +20,15 @@ class Table():
     def __init__(self):
 
         print (' = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =')
-        print ('|| Python3 version of 2048, made by << Heejong Ahn >>      ||')
-        print ('|| Please enjoy, and let me know if you find errors.       ||')
-        print ('|| You can check the full code at github.com/heejongahn    ||')
+        print (colored('|| Terminal Line 2048 powered by Super Cool Python3 !!!    ||', attrs = ['bold']))
+        print ('|| * Please enjoy, and let me know if you find errors.     ||')
+        print ('|| * You can check the full code at github.com/heejongahn  ||')
+        print ('|| * Full Size Recommended                                 ||')
         print (' = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =')
-        print ('\n')
 
-        self.size = int(input('Size of the table? '))
+        self.size = int(input('Please insert the size of the game : '))
         self.table = self.makeTable()
+        os.system('cls' if isWindows else 'clear')
         self.freeList = list(range(1,self.size*self.size))
         self.point = 0
         self.maxValue = 2
@@ -45,6 +57,7 @@ class Table():
         table = self.table
         colorMap = self.colorMap
 
+        print (wall)
         for line in table:
             for e in line:
                 val = str(e)
@@ -55,7 +68,7 @@ class Table():
 
         print ("Current point is: ", end=" ")
         print (colored(self.point, attrs=['bold']))
-        print ('- - - - - - - - - - - - - - - - - - - - - - - - -')
+        print ('Press Up(w) / Down(s) / Left(A) / Right(D) or Quit the game (Q)')
         return
 
     # function isGoal

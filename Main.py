@@ -1,14 +1,18 @@
 from Table import Table
 import Getch
+import os
+import platform
+
+isWindows = True if platform.system() == 'Windows' else False
 
 # 2048 Mockup in Python3 : Made by Heejong Ahn
 
 # Main routine
 
+os.system('cls' if isWindows else 'clear')
 table = Table()
 
 while (table.canMove()):
-    print("Pick a move : w(up) / s(down) / a(left) / d(right) or q(quit)")
     usrInput = Getch.getch()
     if usrInput == 'q':
         break
@@ -22,6 +26,7 @@ while (table.canMove()):
     except:
         pass
 
+    os.system('cls' if isWindows else 'clear')
     table.printTable()
     # When the goal is achieved
     if table.isGoal():
