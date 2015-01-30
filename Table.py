@@ -30,7 +30,7 @@ class Table():
         self.table = self.makeTable()
         os.system('cls' if isWindows else 'clear')
         self.freeList = list(range(1,self.size*self.size))
-        self.point = 0
+        self.score = 0
         self.maxValue = 2
         self.colorMap = {'-': 'white', 2:'white', 4: 'white', 8: 'yellow',
                 16: 'yellow', 32: 'green', 64: 'green', 128: 'cyan',
@@ -66,8 +66,8 @@ class Table():
                 print (colored(tile, colorMap[e]), end=" ")
             print ('\n')
 
-        print ("Current point is: ", end=" ")
-        print (colored(self.point, attrs=['bold']))
+        print ("Current score is: ", end=" ")
+        print (colored(self.score, attrs=['bold']))
         print ('Press Up(w) / Down(s) / Left(A) / Right(D) or Quit the game (Q)')
         return
 
@@ -112,6 +112,7 @@ class Table():
         self.freeList.remove(grid)
         self.table[grid//size][grid%size] = value
 
+
     # function makeMove
     # This is what 2048 is about!
     # Called each and every time when the user gives an input
@@ -152,7 +153,7 @@ class Table():
                             table[j][col] = '-'
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
-                            self.point += table[i][col]
+                            self.score += table[i][col]
                             maxValue = max(maxValue, table[i][col])
                             break
                         elif table[j][col] != '-':
@@ -190,7 +191,7 @@ class Table():
                             table[j][col] = '-'
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
-                            self.point += table[i][col]
+                            self.score += table[i][col]
                             maxValue = max(maxValue, table[i][col])
                             break
                         elif table[j][col] != '-':
@@ -225,7 +226,7 @@ class Table():
                             table[row][j] = '-'
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
-                            self.point += table[row][i]
+                            self.score += table[row][i]
                             maxValue = max(maxValue, table[row][i])
                             break
                         elif table[row][j] != '-':
@@ -265,7 +266,7 @@ class Table():
                             table[row][j] = '-'
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
-                            self.point += table[row][i]
+                            self.score += table[row][i]
                             maxValue = max(maxValue, table[row][i])
                             break
                         elif table[row][j] != '-':
