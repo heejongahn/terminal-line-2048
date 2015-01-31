@@ -28,7 +28,7 @@ class Score():
         bestScores.sort(reverse=True)
         bestScores = bestScores[:10]
 
-        wallOfFame = open('scoreboard.txt', 'w')
+        scoreboard = open('scoreboard.txt', 'w')
         for score in bestScores:
             score[1].strip('\n')
             scoreLine = score[0] + " " + score[1] + '\n'
