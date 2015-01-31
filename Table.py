@@ -27,16 +27,31 @@ class Table():
         print (' = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =')
 
         self.size = int(input('Please insert the size of the game : '))
-        self.table = self.makeTable()
-        os.system('cls' if isWindows else 'clear')
         self.freeList = list(range(1,self.size*self.size))
         self.score = 0
         self.maxValue = 2
         self.colorMap = {'-': 'white', 2:'white', 4: 'white', 8: 'yellow',
                 16: 'yellow', 32: 'green', 64: 'green', 128: 'cyan',
                 256: 'blue', 512: 'magenta', 1024: 'red', 2048: 'grey'}
+        self.bestScore = 0
+        self.table = self.makeTable()
+
+        os.system('cls' if isWindows else 'clear')
 
         self.printTable()
+
+
+    # function setBestScore
+    # Setter for the class argument bestScore
+
+    def setBestScore(self, bestScore):
+        self.bestScore = bestScore
+
+    # function getBestScore
+    # Getter for the class argument bestScore, in string format
+
+    def getBestScore(self):
+        return str(self.bestScore)
 
     # function makeTable
     # Makes a size*size size game table and return it
@@ -66,8 +81,10 @@ class Table():
                 print (colored(tile, colorMap[e]), end=" ")
             print ('\n')
 
-        print ("Current score is: ", end=" ")
-        print (colored(self.score, attrs=['bold']))
+        scoreString = colored(self.score, attrs=['bold'])
+        bestScoreString = colored(self.bestScore, attrs=['bold'])
+        print ("Current score is: ", scoreString)
+        print ("Best score is: ", bestScoreString)
         print ('Press Up(w) / Down(s) / Left(A) / Right(D) or Quit the game (Q)')
         return
 
@@ -78,6 +95,7 @@ class Table():
         if self.maxValue == 2048:
             return True
         return False
+
 
     def canMove(self):
         table = self.table
@@ -153,9 +171,12 @@ class Table():
                             table[j][col] = '-'
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
+
                             self.score += table[i][col]
+                            self.bestScore = max(self.bestScore, self.score)
                             maxValue = max(maxValue, table[i][col])
                             break
+
                         elif table[j][col] != '-':
                             break
 
@@ -191,9 +212,12 @@ class Table():
                             table[j][col] = '-'
                             freeList.append(j*n + col)
                             table[i][col] = table[i][col] * 2
+
                             self.score += table[i][col]
+                            self.bestScore = max(self.bestScore, self.score)
                             maxValue = max(maxValue, table[i][col])
                             break
+
                         elif table[j][col] != '-':
                             break
 
@@ -226,9 +250,12 @@ class Table():
                             table[row][j] = '-'
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
+
                             self.score += table[row][i]
+                            self.bestScore = max(self.bestScore, self.score)
                             maxValue = max(maxValue, table[row][i])
                             break
+
                         elif table[row][j] != '-':
                             break
 
@@ -266,9 +293,12 @@ class Table():
                             table[row][j] = '-'
                             freeList.append(row*n + j)
                             table[row][i] = table[row][i] * 2
+
                             self.score += table[row][i]
+                            self.bestScore = max(self.bestScore, self.score)
                             maxValue = max(maxValue, table[row][i])
                             break
+
                         elif table[row][j] != '-':
                             break
 
