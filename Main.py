@@ -14,11 +14,9 @@ os.system('cls' if isWindows else 'clear')
 table = Table()
 score = Score()
 bestScores = score.loadScoreboard()
-print ("From main.py")
-print (bestScores)
 
 try:
-    table.setBestScore(int(bestScores[0]))
+    table.setBestScore(int(bestScores[0][0]))
 except:
     table.setBestScore(0)
 
