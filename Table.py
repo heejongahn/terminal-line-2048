@@ -47,11 +47,11 @@ class Table():
     def setBestScore(self, bestScore):
         self.bestScore = bestScore
 
-    # function getBestScore
-    # Getter for the class argument bestScore, in string format
+    # function getScore(self):
+    # Getter for the class argument score
 
-    def getBestScore(self):
-        return str(self.bestScore)
+    def getScore(self):
+        return self.score
 
     # function makeTable
     # Makes a size*size size game table and return it

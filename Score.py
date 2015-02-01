@@ -16,6 +16,7 @@ class Score():
         for score in scores:
             score = score.strip('\n')
             score = score.split(" ")
+            score[0] = int(score[0])
             bestScores.append(score)
 
         scoreboard.close()
@@ -31,7 +32,7 @@ class Score():
         scoreboard = open('scoreboard.txt', 'w')
         for score in bestScores:
             score[1].strip('\n')
-            scoreLine = score[0] + " " + score[1] + '\n'
+            scoreLine = str(score[0]) + " " + score[1] + '\n'
             scoreboard.write(scoreLine)
 
         scoreboard.close()
