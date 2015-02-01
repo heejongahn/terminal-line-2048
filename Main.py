@@ -40,11 +40,23 @@ while (table.canMove()):
     if table.isGoal():
         print ("You won !!! Your final score is: ", end =" ")
         print (table.getScore())
-        name = input ("Insert your name to quit. Your score will be saved")
+        while True:
+            name = input ("Type your name to quit. (4~10 words) ")
+            if len(name)<4 or len(name)>10:
+                print ("Please type a valid name.")
+                continue
+            break
+
         score.updateScoreboard([table.getScore(), name])
 
 # When There's no possibly way to win
 print ("You lost... Your final score is: ", end =" ")
 print (table.getScore())
-name = input ("Insert your name to quit... ")
+while True:
+    name = input ("Type your name to quit. (4~10 words) ")
+    if len(name)<4 or len(name)>10:
+        print ("Please type a valid name.")
+        continue
+    break
+
 score.updateScoreboard([table.getScore(), name])
