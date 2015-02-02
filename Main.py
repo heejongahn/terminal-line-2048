@@ -8,55 +8,74 @@ import platform
 
 isWindows = True if platform.system() == 'Windows' else False
 
-# Main routine
+#### Main routine
 
 os.system('cls' if isWindows else 'clear')
-table = Table()
+
+# Make a Score instance
 score = Score()
-bestScores = score.loadScoreboard()
+bestScores = score.bestScores
 
+# Try to make a Table instance
 try:
-    table.setBestScore(int(bestScores[0][0]))
+    table = Table()
+
+# If user types any non-integer value at the first place, print the
+# scoreboard and end the program.
 except:
-    table.setBestScore(0)
+    score.printScoreboard()
+    input("Insert any key to quit... ")
 
-while (table.canMove()):
-    usrInput = Getch.getch()
-    if usrInput == 'q':
-        break
-    # Handles invalid inputs
-    if table.makeMove(usrInput):
-        continue
-
-    # When table is full and make a move toward invalid direction, ignore it.
+# Elsewhere, the game starts
+else:
     try:
-        table.pickGrid()
+        table.setBestScore(int(bestScores[0][0]))
     except:
-        pass
+        table.setBestScore(0)
 
-    os.system('cls' if isWindows else 'clear')
-    table.printTable()
-    # When the goal is achieved
-    if table.isGoal():
-        print ("You won !!! Your final score is: ", end =" ")
-        print (table.getScore())
-        while True:
-            name = input ("Type your name to quit. (4~10 words) ")
-            if len(name)<4 or len(name)>10:
-                print ("Please type a valid name.")
-                continue
+    while (table.canMove()):
+        # Use Getch module to handle inputs without entering
+        usrInput = Getch.getch()
+
+        # User can quit the game anytime by typing 'q'
+        if usrInput == 'q':
             break
 
-        score.updateScoreboard([table.getScore(), name])
+        # Handles invalid inputs
+        if table.makeMove(usrInput):
+            continue
 
-# When There's no possibly way to win
-print ("You lost... Your final score is: ", end =" ")
-print (table.getScore())
-while True:
-    name = input ("Type your name to quit. (4~10 words) ")
-    if len(name)<4 or len(name)>10:
-        print ("Please type a valid name.")
-        continue
-    break
+        # When table is full and a move toward invalid direction is made, ignore it.
+        try:
+            table.pickGrid()
+        except:
+            pass
 
-score.updateScoreboard([table.getScore(), name])
+        # Clear the terminal everytime
+        os.system('cls' if isWindows else 'clear')
+        table.printTable()
+
+        # When the goal is achieved
+        if table.isGoal():
+            print ("You won !!! Your final score is: ", end =" ")
+            print (table.getScore())
+            while True:
+                name = input ("Type your name to quit. (4~10 words) ")
+                if len(name)<4 or len(name)>10:
+                    print ("Please type a valid name.")
+                    continue
+                break
+
+            score.updateScoreboard([table.getScore(), name])
+
+    # When There's no possibly way to win
+    print ("You lost... Your final score is: ", end =" ")
+    print (table.getScore())
+    while True:
+        name = input ("Type your name to quit. (4~10 words) ")
+        if len(name)<4 or len(name)>10:
+            print ("Please type a valid name.")
+            continue
+        break
+
+    score.updateScoreboard([table.getScore(), name])

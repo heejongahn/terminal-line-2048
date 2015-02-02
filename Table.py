@@ -26,7 +26,8 @@ class Table():
         print ('|| * Full Size Recommended                                 ||')
         print (' = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =')
 
-        self.size = int(input('Please insert the size of the game : '))
+
+        self.size = int(input('Please insert the size of the game. Type any non-integer to see the scoreboard : '))
         self.freeList = list(range(1,self.size*self.size))
         self.score = 0
         self.maxValue = 2

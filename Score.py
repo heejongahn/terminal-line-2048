@@ -23,6 +23,10 @@ class Score():
 
         return bestScores
 
+    def printScoreboard(self):
+        for score in self.bestScores:
+            print ('{} {}'.format(score[0], score[1]))
+
     def updateScoreboard(self, score):
         bestScores = self.bestScores
         bestScores.append(score)
