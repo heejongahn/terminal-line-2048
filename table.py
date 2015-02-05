@@ -3,8 +3,10 @@ from termcolor import colored
 import os
 import platform
 
+# Variable isWindows declaration
 isWindows = True if platform.system() == 'Windows' else False
 
+# Wall made by using http://patorjk.com/software/taag/
 wall = '''
  ____  ____  ____  __  __  ____  _  _    __    __    ___   ___    __   ___
 (_  _)( ___)(  _ \(  \/  )(_  _)( \( )  /__\  (  )  (__ \ / _ \  /. | ( _ )
@@ -76,6 +78,7 @@ class Table():
         print (wall)
         for line in table:
             for e in line:
+                # For the sake of alignment
                 val = str(e)
                 blank = " " * (4-len(val))
                 tile = val + blank
@@ -90,13 +93,15 @@ class Table():
         return
 
     # function isGoal
-    # Check whether user achieved the goal or not
+    # If [2048] tile is made, return True. Return False elsewhere.
 
     def isGoal(self):
         if self.maxValue == 2048:
             return True
         return False
 
+    # function canMove
+    # If any possible move exists, return True. Return False elsewhere.
 
     def canMove(self):
         table = self.table
@@ -133,8 +138,8 @@ class Table():
 
 
     # function makeMove
-    # This is what 2048 is about!
-    # Called each and every time when the user gives an input
+    # This is what 2048 is about - called each time when the user gives an input
+    # Return 0 when everything's ok. Return 1 when something's wrong.
 
     def makeMove(self, usrInput):
         if usrInput == 'w':

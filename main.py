@@ -1,8 +1,8 @@
 # 2048 Mockup in Python3 : Made by Heejong Ahn
 
-from Table import Table
-from Score import Score
-import Getch
+from table import Table
+from score import Score
+import getch
 import os
 import platform
 
@@ -33,9 +33,10 @@ else:
     except:
         table.setBestScore(0)
 
+    # Iterate until there's no possible movements
     while (table.canMove()):
         # Use Getch module to handle inputs without entering
-        usrInput = Getch.getch()
+        usrInput = getch.getch()
 
         # User can quit the game anytime by typing 'q'
         if usrInput == 'q':

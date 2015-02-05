@@ -14,7 +14,7 @@ Python 3
 
 ## How To Play
 
-1. 'python3 Main.py'
+1. 'python3 main.py'
 2. Select a size of the game table
 3. You can move with keyboard w,a,s,d
 4. When you achieve [2048] Tile, you win!
