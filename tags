@@ -1,0 +1,58 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Getch	getch.py	/^class Getch:$/;"	c
+Score	main.py	/^from score import Score$/;"	i
+Score	score.py	/^class Score():$/;"	c
+Table	main.py	/^from table import Table$/;"	i
+Table	table.py	/^class Table():$/;"	c
+_GetchUnix	getch.py	/^class _GetchUnix:$/;"	c
+_GetchWindows	getch.py	/^class _GetchWindows:$/;"	c
+__call__	getch.py	/^    def __call__(self): return self.impl()$/;"	m	class:Getch	file:
+__call__	getch.py	/^    def __call__(self):$/;"	m	class:_GetchUnix	file:
+__call__	getch.py	/^    def __call__(self):$/;"	m	class:_GetchWindows	file:
+__init__	getch.py	/^    def __init__(self):$/;"	m	class:Getch
+__init__	getch.py	/^    def __init__(self):$/;"	m	class:_GetchUnix
+__init__	getch.py	/^    def __init__(self):$/;"	m	class:_GetchWindows
+__init__	score.py	/^    def __init__(self):$/;"	m	class:Score
+__init__	table.py	/^    def __init__(self):$/;"	m	class:Table
+bestScores	main.py	/^bestScores = score.bestScores$/;"	v
+canMove	table.py	/^    def canMove(self):$/;"	m	class:Table
+colored	table.py	/^from termcolor import colored$/;"	i
+getScore	table.py	/^    def getScore(self):$/;"	m	class:Table
+getch	getch.py	/^getch = Getch()$/;"	v
+getch	main.py	/^import getch$/;"	i
+isGoal	table.py	/^    def isGoal(self):$/;"	m	class:Table
+isWindows	main.py	/^isWindows = True if platform.system() == 'Windows' else False$/;"	v
+isWindows	table.py	/^isWindows = True if platform.system() == 'Windows' else False$/;"	v
+loadScoreboard	score.py	/^    def loadScoreboard(self):$/;"	m	class:Score
+makeMove	table.py	/^    def makeMove(self, usrInput):$/;"	m	class:Table
+makeTable	table.py	/^    def makeTable(self):$/;"	m	class:Table
+moveDown	table.py	/^    def moveDown(self):$/;"	m	class:Table
+moveLeft	table.py	/^    def moveLeft(self):$/;"	m	class:Table
+moveRight	table.py	/^    def moveRight(self):$/;"	m	class:Table
+moveUp	table.py	/^    def moveUp(self):$/;"	m	class:Table
+msvcrt	getch.py	/^        import msvcrt$/;"	i
+name	main.py	/^                name = input ("Type your name to quit. (4~10 words) ")$/;"	v
+name	main.py	/^        name = input ("Type your name to quit. (4~10 words) ")$/;"	v
+os	main.py	/^import os$/;"	i
+os	table.py	/^import os$/;"	i
+pickGrid	table.py	/^    def pickGrid(self):$/;"	m	class:Table
+platform	main.py	/^import platform$/;"	i
+platform	table.py	/^import platform$/;"	i
+printScoreboard	score.py	/^    def printScoreboard(self):$/;"	m	class:Score
+printTable	table.py	/^    def printTable(self):$/;"	m	class:Table
+random	table.py	/^import random$/;"	i
+score	main.py	/^score = Score()$/;"	v
+setBestScore	table.py	/^    def setBestScore(self, bestScore):$/;"	m	class:Table
+sys	getch.py	/^        import sys, tty, termios$/;"	i
+sys	getch.py	/^        import tty, sys$/;"	i
+table	main.py	/^    table = Table()$/;"	v
+termios	getch.py	/^        import sys, tty, termios$/;"	i
+tty	getch.py	/^        import sys, tty, termios$/;"	i
+tty	getch.py	/^        import tty, sys$/;"	i
+updateScoreboard	score.py	/^    def updateScoreboard(self, score):$/;"	m	class:Score
+usrInput	main.py	/^        usrInput = getch.getch()$/;"	v
